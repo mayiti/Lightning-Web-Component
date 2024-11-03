@@ -1,2 +1,1 @@
-# Salesforce-Lightning
-Lightning Web Component
+# Lightning Web Component

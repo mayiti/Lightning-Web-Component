@@ -1,0 +1,17 @@
+.incompletebg{
+    background-color: rgb(230, 218, 47);
+}
+
+.completebg{
+    background-color: rgb(61, 231, 86);
+}
+
+.formattaskname{
+    font-size: large;
+}
+
+.topheader{
+    font-size: large;
+    color: rgb(23, 43, 36);
+    font-weight: bold;
+}

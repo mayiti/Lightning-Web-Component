@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Component Parent" icon-name="custom:custom17">
+        <div class="slds-var-p-around_small">
+        <lightning-input label="Enter Value" placeholder="Enter the value..." onchange={handleChange} value={message}></lightning-input>
+    </div>
+    </lightning-card>
+    
+    <c-test-knowledge-about-communication-two display={message} onchildmessage = {testme}></c-test-knowledge-about-communication-two>
+
+</template>

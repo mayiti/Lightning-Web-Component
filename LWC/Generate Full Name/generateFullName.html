@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Generate Full Name" icon-name="custom:custom16">
+    <div>
+        <lightning-input label = "First Name" placeholder = "Enter First Name" onchange={namehandler}></lightning-input>
+        <lightning-input label = "Last Name" placeholder = "Enter Last Name" onchange={namehandler}></lightning-input>
+    </div>
+
+    <div class = "slds-align_absolute-center slds-var-p-around_small">
+        <lightning-button label = "Full Name" variant="brand" onclick={generateFullName}></lightning-button>
+    </div>
+
+    <div class="slds-var-p-around_small">
+    <p>{display}</p>
+    </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Subscriber LMS">
+        <div class = "slds-var-p-around_small">
+            {pubmessage}
+        </div>
+
+        <div class="slds-var-p-around_small">
+            <lightning-input onchange={changeHandler} label="Publish Message" placeholder="Enter any text" value={pubbmsg}></lightning-input>
+        </div>
+    </lightning-card>
+</template>

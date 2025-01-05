@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Publisher LMS">
+        <div class = "slds-align_absolute-center">
+            <lightning-button variant="brand" label="Publish" onclick={publishHandler} class="slds-var-p-around_small "></lightning-button>
+        
+            <lightning-button variant="brand" label="Un-Publish" onclick={unpublishHandler} class="slds-var-p-around_small "></lightning-button>
+        </div>
+
+        <div class="slds-var-p-around_small">
+            <lightning-input onchange={changeHandler} label="Publish Message" placeholder="Enter any text"  value={seldesc}></lightning-input>
+        </div>
+    </lightning-card>
+</template>

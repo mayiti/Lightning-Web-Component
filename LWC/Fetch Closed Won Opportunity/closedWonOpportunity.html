@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Opportunity Summary" icon-name="custom:custom20">
+        <div class="slds-var-p-around_small">
+            <template lwc:if={Opportunity.length}>
+            <p><strong>Opportunities: {closeOpp}</strong></p>
+            <p><strong>Total Revenue: {totalSum}</strong></p>
+            <p><strong>Opportunity Details: </strong></p>
+            <p><strong><lightning-datatable
+                key-field="id"
+                data={Opportunity}
+                columns={columns}>
+        </lightning-datatable></strong></p>
+        </template>
+        <template lwc:else>
+            <p><strong>No Data Found</strong></p>
+        </template>
+        </div>
+    </lightning-card>
+</template>

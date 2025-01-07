@@ -16,12 +16,29 @@ public class ContactHandler {
             }
         }
         
-        List<Account> acc = [Select Name,NumberOfEmployees from Account Where Id =: mapofAccount.keyset()];
+        List<Account> acc = [Select Name,NumberOfEmployees,OwnerId from Account Where Id =: mapofAccount.keyset()];
         List<Contact> con = [Select Id from Contact where AccountId =: mapofAccount.keyset()];
         
         for(Account a : acc){
             mapofAccount.put(a.Id,con.size());
             a.NumberOfEmployees = mapofAccount.get(a.Id);
+            List<String> emailaddress = new List<String>();
+            User u = [Select Email from User where Id =: a.OwnerId];
+            if(con.size() == 0){
+                system.debug('User Email '+ u.Email);
+                Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+                email.Subject = 'No Contact Left for Account '+ a.Name;
+                email.htmlbody = 'All Contacts has been deleted for Account '+ a.Name;
+                email.toaddresses = new String[] {u.Email};
+                    Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{email};
+                        Messaging.SendEmailResult[] result = Messaging.SendEmail(messages);
+                if(result[0].success){
+                    system.debug('Email Send Successfully');
+                }
+                else{
+                    system.debug('Error while sending Email');
+                }
+            }
         }
         if(!acc.IsEmpty()){
             update acc;

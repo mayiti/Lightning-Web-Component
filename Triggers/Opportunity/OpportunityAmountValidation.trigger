@@ -11,5 +11,6 @@ trigger OpportunityAmountValidation on Opportunity (before insert, before update
     else if(trigger.IsAfter && (trigger.IsInsert || trigger.IsUpdate || trigger.IsDelete)){
         OpportunityHandler.AddAllAmount(trigger.new, trigger.old);
         OpportunityHandler.UpdateMultiPicklist(trigger.new);
+        OpportunityHandler.SendEmailToManager(trigger.new);
     }
 }

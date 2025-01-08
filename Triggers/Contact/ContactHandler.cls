@@ -44,6 +44,35 @@ public class ContactHandler {
             update acc;
         }
     }
+    public static void ConcatContactName(List<Contact> newCon, List<Contact> oldCon){
+        Map<Id, String> mapofContact = new Map<Id, String>(); 
+        String ConName = '';
+        if(newCon != null){
+            for(Contact con : newCon){
+                if(con.AccountId != null){
+                    mapofContact.put(con.AccountId, con.Name);
+                }
+            }
+        }
+        if(oldCon != null){
+            for(Contact con : oldCon){
+                if(con.AccountId != null){
+                    mapofContact.put(con.AccountId, con.Name);
+                }
+            }
+        }
+        List<Account> acclist  = [Select Id, Description from Account where id =: mapofContact.keyset()];
+        List<Contact> conlist = [Select Id, AccountId, Name from Contact where AccountId =: mapofContact.keyset()];
+        for(Integer i=0; i<conlist.size();i++){
+            ConName = ConName +' '+ conlist[i].Name;
+        }
+        for(Account a : acclist){
+            a.Description = ConName;
+        }
+        if(!acclist.IsEmpty()){
+            update acclist;
+        }
+    }
     public static void preventduplicateEmail(List<Contact> conlist){
         Set<String> email = new Set<String>();
         for(Contact c : conlist){

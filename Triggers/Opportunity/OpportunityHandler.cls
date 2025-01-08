@@ -87,4 +87,36 @@ public class OpportunityHandler {
             }
         }
     }
+    public static void SendEmailToManager(List<Opportunity> newOpp){
+        Set<Id> Ids = new Set<Id>();
+        String OppName = ' ';
+        for(Opportunity o : newOpp){
+            if(o.Urgent_Deal__c == true){
+                Ids.add(o.OwnerId);
+                OppName = o.Name;
+                system.debug('o.OwnerId '+Ids);
+                system.debug('OppName '+OppName);
+            }
+        }
+        if(!Ids.IsEmpty()){
+            User u = [Select Id,Email,ManagerId from User where Id =: Ids];
+            system.debug('user query '+u);
+            User manu = [Select Id, Email from User where Id =: u.ManagerId];
+            system.debug('mana user query '+manu.Email);
+            Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+            email.toAddresses = new String[]{u.Email,manu.Email};
+                system.debug('toAddresses '+email.toAddresses);
+            email.Subject = 'Opportunity is of Urgent Deal';
+            email.htmlbody = 'The following Opportunity has Urgent Deal ' + OppName;
+            Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{email};
+                Messaging.SendEmailResult[] result = Messaging.SendEmail(messages);
+            
+            if(result[0].success){
+                System.debug('Email send Successfully');
+            }
+            else{
+                System.debug('Error while sending Email');
+            }
+        }
+    }
 }

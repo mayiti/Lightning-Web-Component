@@ -17,7 +17,9 @@ export default class ClosedWonOpportunity extends LightningElement {
             this.Opportunity = data;
             console.log(this.Opportunity);
             for(let i=0;i<data.length;i++){
+                if(data[i].Amount != null){
                 this.totalSum = this.totalSum + data[i].Amount;
+            }
             }
             console.log(this.totalSum);
         }

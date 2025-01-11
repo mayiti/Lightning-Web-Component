@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title={dynamictitle} icon-name="custom:custom21">
+        <div class="slds-var-p-around_small">
+            <lightning-input label="Account Name" onchange={changeHandler} name="accname" value={accnameval} type="text" required="true" message-when-value-missing="Please Enter a valid Account Name"></lightning-input>
+
+            <lightning-input label="Website" onchange={changeHandler} name="accwebsite" value={accwebsiteval} type="url" message-when-value-missing="Please Enter Account WebSite" message-when-type-mismatch="Please Enter a valid WebSite"></lightning-input>
+
+            <template lwc:if={ratingpicklist.data}>
+            <lightning-combobox
+            name="accrating"
+            label="Rating"
+            value={accratingval}
+            placeholder="Select Rating"
+            options={ratingpicklist.data.values}
+            onchange={changeHandler} ></lightning-combobox>
+        </template>
+
+        </div>
+
+        <div class="slds-align_absolute-center">
+        <div class="slds-var-p-around_small">
+            <lightning-button variant="brand" label={buttonName} onclick={createAccount} class="slds-var-p-around_small "></lightning-button>
+        </div>
+
+        <div class="slds-var-p-around_small">
+            <lightning-button label="Reset" onclick={resetHandler} class="slds-var-p-around_small "></lightning-button>
+        </div>
+    </div>
+    </lightning-card>
+</template>

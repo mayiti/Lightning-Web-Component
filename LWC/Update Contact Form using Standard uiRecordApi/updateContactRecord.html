@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Update Contact" icon-name="custom:custom69">
+        <div class="slds-var-p-around_small">
+            
+            <lightning-input label="Phone" value={conphone} placeholder="Enter Contact Phone" name="cphone" onchange={changeHandler}></lightning-input>
+            <lightning-input label="Description" value={condesc} placeholder="Enter Contact Description" name="cdesc" onchange={changeHandler}></lightning-input>
+        </div>
+
+        <div class="slds-align_absolute-center">
+            <lightning-button variant="brand" label="Update" onclick={submitHandler} class="slds-var-p-around_small"></lightning-button>
+            <lightning-button variant="brand" label="Cancel" onclick={cancelHandler} class="slds-var-p-around_small"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Create Contact" icon-name="custom:custom70">
+        <div class="slds-var-p-around_small">
+        <lightning-input label = "First Name" placeholder="Enter First Name" onchange={changeHandler} required="true" name ="fname" value={firstname}></lightning-input>
+        <lightning-input label = "Last Name" placeholder="Enter Last Name" onchange={changeHandler} required="true" name ="lname" value={lastname}></lightning-input>
+        <lightning-input label = "Description" placeholder="Enter Description" onchange={changeHandler} name ="desc" value={descvalue}></lightning-input>
+    </div>
+    <div class="slds-align_absolute-center">
+        <lightning-button variant="brand" label="Submit" onclick={submitHandler} class="slds-var-p-around_small"></lightning-button>
+        <lightning-button variant="brand" label="Cancel" onclick={cancelHandler} class="slds-var-p-around_small"></lightning-button>
+    </div>
+    </lightning-card>
+</template>

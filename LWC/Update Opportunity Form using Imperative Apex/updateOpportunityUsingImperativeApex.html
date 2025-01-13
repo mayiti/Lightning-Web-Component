@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Update Opportunity" icon-name="custom:custom59">
+        <div class="slds-var-p-around_small">
+            <lightning-input label="Name" onchange={chageHandler} placeholder="Enter Opportunity Name" value={oppnameval} name="opname"></lightning-input>
+
+            <template lwc:if={oppstagepicklist.data}>
+                <lightning-input label="Stage" onchange={chageHandler} options={oppstagepicklist.data.value} name="opstage" value={oppStageval}></lightning-input>
+                </template>
+
+            <lightning-input label="Amount" onchange={chageHandler} type="currency" name="opamount" value={oppamounntval}></lightning-input>
+
+            
+        </div>
+
+        <div class="slds-align_absolute-center">
+            <lightning-button class= "slds-var-p-around_small" variant="brand" label="Update" onclick={submitHandler}></lightning-button>
+            <lightning-button class="slds-var-p-around_small" variant="brand" label="Cancel" onclick={cancelHandler}></lightning-button>"
+        </div>
+
+    </lightning-card>
+</template>

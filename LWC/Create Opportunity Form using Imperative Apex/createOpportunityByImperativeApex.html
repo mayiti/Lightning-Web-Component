@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Create Opportunity" icon-name="custom:custom56">
+        <div class="slds-var-p-around_small">
+            <lightning-input label="Name" onchange={changeHandler} placeholder= "Enter Opportunity Name" required="true" value={oppnameval} name="opname"></lightning-input>
+
+            <template lwc:if={oppstagepicklist.data}>
+            <lightning-combobox label="Stage" onchange={changeHandler} options={oppstagepicklist.data.values} name="opstage" value={oppStageval}></lightning-combobox>
+            </template>
+
+            <lightning-input label="Close Date" onchange={changeHandler} required="true" type="date" name="opclosedate" value={oppclosedateval}></lightning-input>
+
+            <lightning-input label="Amount" onchange={changeHandler} type="currency" name="opamount" value={oppamounntval}></lightning-input>
+        </div>
+
+        <div class="slds-align_absolute-center">
+            <lightning-button class= "slds-var-p-around_small" variant="brand" label="Submit" onclick={submitHandler}></lightning-button>
+            <lightning-button variant="brand" label="Cancel" onclick={cancelHandler}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

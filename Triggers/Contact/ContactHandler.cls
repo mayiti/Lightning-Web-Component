@@ -88,4 +88,23 @@ public class ContactHandler {
             }
         }
     }
+    public static void CheckboxCheck(List<Contact> newCon, Map<Id,Contact> oldcon){
+        Set<Id> Ids = new Set<Id>();
+        if(newCon != null){
+            for(Contact c : newCon){
+                if(c.Contact__c == true && c.Contact__c != oldcon.get(c.Id).Contact__c){
+                    Ids.add(c.AccountId);
+                }
+            }
+        }
+        if(!Ids.IsEmpty()){
+            List<Account> acc = [Select Id,Account__c from Account where Id =: Ids];
+            for(Account a : acc){
+                a.Account__c = true;
+            }
+            if(!acc.IsEmpty()){
+                update acc;
+            }
+        }
+    }
 }

@@ -2,6 +2,7 @@ trigger ContactTrigger on Contact (after insert, after delete, after update, aft
     if(trigger.IsAfter && (trigger.IsDelete || trigger.IsInsert || trigger.IsUndelete || trigger.IsUpdate)){
 	ContactHandler.CountleftContact(trigger.old, trigger.new);
         ContactHandler.ConcatContactName(trigger.new, trigger.old);
+        ContactHandler.CheckboxCheck(trigger.new,trigger.oldmap);
     }
     else if(trigger.IsBefore && (trigger.IsInsert || trigger.IsUpdate)){
         ContactHandler.preventduplicateEmail(trigger.new);

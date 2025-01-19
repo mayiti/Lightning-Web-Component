@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title="Delete Contacts Records">
+        <div class="slds-var-p-around_small">
+            <lightning-checkbox-group label="Select how many Contacts Records do you wants to delete?" name="selcheckbox" options={options} value={value} onchange={changeHandler}></lightning-checkbox-group>
+
+            <lightning-button variant="brand" label="Delete" title="Delete" onclick={deleteHandler} class="slds-var-p-around_small slds-align_absolute-center"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

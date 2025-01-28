@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Sign Up">
+        <div class="slds-var-p-around_small">
+            <lightning-input label="Name" type="text" name="name" value={namevalue} onchange={handleChange}></lightning-input>
+            <lightning-input label="User Name" type="email" name="uname" value={unamevalue} onchange={handleChange}></lightning-input>
+            <lightning-input label="Create Password" type="text" name="pass" value={passvalue} onchange={handleChange}></lightning-input>
+            <lightning-input label="Re-enter Password" type="text" name="repass" value={repassvalue} onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-align_absolute-center">
+            <lightning-button label="Create Account" variant="brand" onclick={createHandler}></lightning-button>
+            <lightning-button class="slds-var-p-around_small" label="Cancle" variant="destructive" slot="actions" onclick={cancleHandler}></lightning-button>
+        </div>
+        <div class="slds-var-p-around_small">
+    <lightning-button label="Already have Account" variant="base" slot="actions" onclick={handleClick}></lightning-button>
+</div>
+    </lightning-card>
+    
+    </template>

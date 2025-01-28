@@ -1,0 +1,16 @@
+<template>
+<lightning-card title="Sign In">
+    <div class="slds-var-p-around_small">
+    <lightning-input label="Username" type="email" name="uname" value={unamevalue} onchange={handleChange}></lightning-input>
+    <lightning-input label="Password" type="text" name="pass" value={passvalue} onchange={handleChange}></lightning-input>
+</div>
+<div class="slds-align_absolute-center slds-var-p-around_small">
+    <lightning-button label="Log In" variant="brand" onclick={loginHandle}></lightning-button>
+    <lightning-button class="slds-var-p-around_small" label="Cancle" variant="destructive" onclick={cancleHandler}></lightning-button>
+</div>
+<div class="slds-var-p-around_small">
+    <lightning-button label="Create New Account" variant="base" slot="actions" onclick={handleClick}></lightning-button>
+</div>
+</lightning-card>
+
+</template>

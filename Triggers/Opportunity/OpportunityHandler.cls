@@ -119,4 +119,48 @@ public class OpportunityHandler {
             }
         }
     }
+public static void AggragateAmount(List<Opportunity> newOpp, Map<Id,Opportunity> mapofOpp, List<Opportunity> oldOpp){
+        Set<Id> Ids = new Set<Id>();
+        Map<Id,Decimal> mapposAmount = new Map<Id,Decimal>();
+        Map<Id,Decimal> mapnevAmount = new Map<Id,Decimal>();
+        Map<Id,Decimal> mapfinAmount = new Map<Id,Decimal>();
+        if(newOpp != null){
+            for(Opportunity o : newOpp){
+                Ids.add(o.AccountId);
+            }
+        }
+        
+        List<AggregateResult> aglistpos = [Select AccountId, SUM(Amount) Amount from Opportunity where AccountId =: Ids AND StageName = 'Closed Won' GROUP BY AccountId];
+        List<AggregateResult> aglistnev = [Select AccountId, SUM(Amount) Amount from Opportunity where AccountId =: Ids AND StageName = 'Closed Lost' GROUP BY AccountId];
+        for(AggregateResult ag: aglistpos){
+            mapposAmount.put((Id)ag.get('AccountId'), (Decimal)ag.get('Amount'));
+            system.debug('mapposAmount '+mapposAmount);
+        }
+        for(AggregateResult ag: aglistnev){
+            mapnevAmount.put((Id)ag.get('AccountId'), (Decimal)ag.get('Amount'));
+        }
+                
+        List<Account> aclist = new List<Account>();
+        for(Id acc: Ids){
+            Account a = new Account(Id = acc);
+            system.debug('mapposAmount.containskey(acc) '+mapposAmount.containskey(acc));
+            system.debug('mapnevAmount.containskey(acc) '+mapnevAmount.containskey(acc));
+            if(mapposAmount.containskey(acc) && mapnevAmount.containskey(acc)){
+                mapfinAmount.put(acc,(mapposAmount.get(acc) - mapnevAmount.get(acc)));
+                system.debug('mapfinAmount '+mapfinAmount);
+            }
+            else if(!mapnevAmount.containskey(acc)){
+                mapfinAmount.put(acc,(mapposAmount.get(acc)));
+            }
+            else if(!mapposAmount.containskey(acc)){
+                mapfinAmount.put(acc,(mapnevAmount.get(acc)));
+            }
+            a.Total_Invoiced_Amount__c = mapfinAmount.get(acc);
+            aclist.add(a);
+        }
+        
+        if(!aclist.IsEmpty()){
+            update aclist;
+        }
+    }
 }

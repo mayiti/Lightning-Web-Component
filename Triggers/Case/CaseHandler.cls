@@ -5,9 +5,7 @@ public class CaseHandler {
         Integer Flag = 0;
         if(!newcase.IsEmpty()){
             for(Case c : newcase){
-                if(c.Status != mapofCase.get(c.Id).Status){
-                    Ids.add(c.AccountId);
-                }
+                Ids.add(c.AccountId);
             }
         }
         if(!Ids.IsEmpty()){

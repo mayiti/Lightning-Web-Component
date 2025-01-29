@@ -12,5 +12,6 @@ trigger OpportunityAmountValidation on Opportunity (before insert, before update
         OpportunityHandler.AddAllAmount(trigger.new, trigger.old);
         OpportunityHandler.UpdateMultiPicklist(trigger.new);
         OpportunityHandler.SendEmailToManager(trigger.new);
+        OpportunityHandler.AggragateAmount(trigger.new, trigger.oldmap, trigger.old);
     }
 }
